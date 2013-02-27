@@ -125,20 +125,36 @@ button {
   /* ----------------------- */
   /* size */
 
-  &.mini {
+  &.mini,
+  &.btn-mini {
     font-size: 75%;
+    i {
+      top: 1px;
+    }
   }
 
-  &.small {
+  &.small,
+  &.btn-small {
     font-size: 85%;
+    i {
+      top: 1px;
+    }
   }
 
-  &.large {
+  &.large,
+  &.btn-large {
     font-size: 125%;
+    i {
+      top: 7px;
+    }
   }
 
-  &.huge {
+  &.huge,
+  &.btn-huge {
     font-size: 155%;
+    i {
+      top: 11px;
+    }
   }
 
   /* ----------------------- */  
@@ -211,6 +227,27 @@ button {
   }
 }
 
+a:not(.icon) {
+
+  padding-left: 28px;
+  position: relative;
+
+  &:before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  i,
+  &:before {
+    position: absolute;
+    top: 4px;
+    left: 8px;
+  }
+  
+}
+
 // reset padding for outer button div
 div.btn.icon {
   padding: 0;
@@ -252,6 +289,32 @@ input::-moz-focus-inner {
     }
   }
 
+  &.btn-group-vertical {
+    display:inline-block;
+    .btn,
+    .button,
+    button {
+      display:block;
+
+      &:first-child {
+        .btn,
+        .button,
+        button {
+          border-left-width: 1px;
+          @include border-radius($border_radius $border-radius 0 0);
+        }
+      }
+
+      &:last-child {
+        .btn,
+        .button,
+        button {
+          @include border-radius(0 0 $border_radius $border-radius);
+        }
+      }
+    }
+  }
+
   form { /* for rails button_to helper (creates form > div > input) */
     div {
       display: block;
@@ -272,6 +335,30 @@ input::-moz-focus-inner {
       .button,
       button {
         @include border-radius(0 $border_radius $border-radius 0);
+      }
+    }
+  }
+}
+
+.btn-toolbar {
+
+  & > .btn-group,
+  & > .btn_group {
+    display: inline-block;
+    &:first-of-type {
+      .btn,
+      .button,
+      button {
+        &:first-child{
+        margin-left: 0px;
+        }
+      }
+    }
+    .btn,
+    .button,
+    button {
+      &:first-child {
+        margin-left: 5px;
       }
     }
   }
